@@ -70,7 +70,7 @@ The `routeState` object looks like this:
       activeChild: null,
       queryParams: { isSearchShown: false, searchTerm: 'My query' },
       children: {},
-      path": ''
+      path: ''
     }
   }
 }
