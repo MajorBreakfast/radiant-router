@@ -53,7 +53,7 @@ The `routeState` object looks like this:
 
 ```JS
 {
-  activeChild: about,
+  activeChild: 'about',
   queryParams: {},
   children: {
     home: { activeChild: null, queryParams: {}, children: {} },
@@ -62,8 +62,7 @@ The `routeState` object looks like this:
       queryParams: {},
       children: {
         'terms-of-use': { activeChild: null, queryParams: {}, children: {} },
-        imprint: { activeChild: null, queryParams: {}, children: {}
-        }
+        imprint: { activeChild: null, queryParams: {}, children: {} }
       }
     },
     catalog: {
