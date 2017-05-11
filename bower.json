@@ -1,0 +1,20 @@
+{
+  "name": "radiant-router",
+  "version": "0.9",
+  "license": "MIT",
+  "description": "Material design tabs",
+  "main": "radiant-router.html",
+  "authors": ["MajorBreakfast"],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "router"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MajorBreakfast/radiant-router.git"
+  },
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0"
+  }
+}

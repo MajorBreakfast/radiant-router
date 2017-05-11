@@ -1,0 +1,95 @@
+<link rel="import" href="../polymer/polymer.html">
+<script src="route.js"></script>
+
+<dom-module id="radiant-router">
+  <template>
+    <p>URL: "[[url]]"</p>
+    <pre>[[_toJSON(routeState, routeState.*)]]</pre>
+  </template>
+  <script>
+    /**
+    Here's how routing works:
+
+    On URL change:
+    url property -----------> routing              routeState property
+                 <----------- system  ----------->
+
+    On routeState change:
+    url property              routing <----------- routeState property
+                 <----------- system  ----------->
+
+    - The routing system connects the url with the routeState bidirectionally.
+      It's an instance of the Route class with multiple child routes attached.
+    - url property is meant to be synced to the url bar,
+      e.g. using <iron-location>
+      If the URL is changed from the outside, the router might change it again
+      to move it into a consistent state, e.g. it removes trailing slashes.
+    - routeState property is an object which is meant to be manipulated by
+      the app. If the routeState is changed from the outside, the router might
+      change it again to move it into a consistent state, e.g. it removes
+      unknown properties.
+
+    The routeState object has the following format:
+    {
+      activeChild: 'some-route',
+      queryParams: {},
+      children: {
+        'some-route': { .. }
+        'another-route': {
+          activeChild: null,
+          queryParams: { someBooleamParam: true },
+          children: {},
+          path: 'path/that/is/available/if/capturePath/is/set/to/true'
+        }
+      }
+    }
+    */
+    (function () {
+      Polymer({
+        is: 'radiant-router',
+
+        properties: {
+          url: { type: String, notify: true },
+          routeState: { type: Object, notify: true },
+          rootRoute: { type: Object }
+        },
+
+        observers: [
+          '_onURLChange(url)',
+          '_onRouteStateChange(routeState, routeState.*)'
+        ],
+
+        ready: function () {
+          this._extractPropertiesFromRouter()
+        },
+
+        _onURLChange: function (url) {
+          this.rootRoute.url = url
+          this._extractPropertiesFromRouter()
+        },
+
+        _onRouteStateChange: function (routeState) {
+          this.rootRoute.state = routeState
+          this._extractPropertiesFromRouter()
+        },
+
+        _extractPropertiesFromRouter: function () {
+          // URL
+          this.url = this.rootRoute.url
+
+          // routeState
+          var newRouteState = this.rootRoute.state
+          if (!deepEqual(this.routeState, newRouteState)) {
+            this.routeState = newRouteState
+          }
+        },
+
+        _toJSON: function (obj) { return JSON.stringify(obj, null, 2) }
+      })
+
+      function deepEqual(obj1, obj2) {
+        return JSON.stringify(obj1) === JSON.stringify(obj2)
+      }
+    })()
+  </script>
+</dom-module>
