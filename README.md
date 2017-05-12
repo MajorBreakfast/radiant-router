@@ -1,6 +1,12 @@
 # Radiant Router
 The `<radiant-router>` is a custom element which synchronizes a URL to a JavaScript object and vice versa. It supports query parameters and path capturing.
 
+## Installation
+
+```sh
+bower install --save MajorBreakfast/radiant-router
+```
+
 ## Demo
 This router is used in production in the [Wolf Service App](https://www.wolfserviceapp.com/) (Spare parts catalog app for the heating, air handling and ventilation systems supplier Wolf GmbH). 
 
