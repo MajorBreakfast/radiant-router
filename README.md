@@ -47,7 +47,7 @@ This router is used in production in the [Wolf Service App](https://www.wolfserv
               )
           }
         }
-      },
+      }
     })
   </script>
 </dom-module>
