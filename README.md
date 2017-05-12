@@ -1,3 +1,4 @@
+# Radiant Router
 The `<radiant-router>` is a custom element which synchronizes a URL to a JavaScript object and vice versa. It supports query parameters and path capturing.
 
 ## Demo
@@ -79,3 +80,23 @@ You may:
 - Set the `activeChild` property to change the active route
 - Change properties of the `queryParams` objects
 - Change the `path` property of the `'catalog'` route (which has path capturing enabled)
+
+## Tips and Tricks
+
+### How to Redirect
+Redirecting can be implemented by setting up an observer to the `routeState` object.
+
+```JS
+observers: [
+  '_onActiveChildRouteChange(routeState.activeChild)'
+],
+_onActiveChildRouteChange (routeName) {
+  if (!routeName) { // null? => Redirect to home
+    setTimeout(() => {
+      this.set('routeState.activeChild', 'home')
+    }, 0)
+  }
+}
+```
+
+Polymer expects that `_onActiveChildRouteChange()` doesn't change the value while it runs. Therefore the modification is done asynchronously using `setTimeout()`. More about Polymer's observers in the [documentation chapter about observers](https://www.polymer-project.org/2.0/docs/devguide/observers).
