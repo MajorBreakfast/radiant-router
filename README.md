@@ -92,6 +92,8 @@ You may:
 ### How to Redirect
 Redirecting can be implemented by setting up an observer to the `routeState` object.
 
+The following code redirects from any unknown route to the `'home'` route. Simply checking whether the `activeChild` property is `null` suffices, because the router automatically sets it to `null` whenever it encounters an unknown route.
+
 ```JS
 observers: [
   '_onActiveChildRouteChange(routeState.activeChild)'
