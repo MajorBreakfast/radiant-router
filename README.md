@@ -10,9 +10,29 @@ bower install --save MajorBreakfast/radiant-router
 ```
 
 ## Demo
-This router is used in production in the [Wolf Service App](https://www.wolfserviceapp.com/) (Spare parts catalog app for the heating, air handling and ventilation systems supplier Wolf GmbH). 
+This router is used in production in the [Wolf Service App](https://www.wolfserviceapp.com/) (Spare parts catalog app for the heating, air handling and ventilation systems supplier Wolf GmbH).
 
-## Example router setup
+## How It Works
+When the `url` property changes:
+```
+URL -----(1)---> routing              routeState
+    <----(2)---- system  ----(2)---->
+```
+
+When the `routeState` object changes:
+```
+                 routing <---(1)----- routeState
+URL <----(2)---- system  ----(2)---->
+```
+
+- The routing system connects the url with the `routeState` bidirectionally.
+- The `url` property is meant to be synced to the URL bar,
+  e.g. using `<iron-location>`. The routing system keeps the URL in a consitent state, this means that after it detects changes, it might further change the URL, e.g. to remove a trailing slash.
+- The `routeState` property is an object which is meant to be manipulated by the app. The routing system keeps the `routeState` object in a consistent state, this means that after it detects changes, it might further change the `routeState` object, e.g. to remove unknown properties. You can see in the example in the next section how the `routeState` object looks like.
+
+## How To Use
+
+This section shows you how to use the `<radiant-router>`.
 
 ```HTML
 <link rel="import" href="../bower_components/polymer/polymer.html">
@@ -84,10 +104,12 @@ The `routeState` object looks like this:
 }
 ```
 
-You may:
-- Set the `activeChild` property to change the active route
-- Change properties of the `queryParams` objects
+You can freely modify the `routeState` object in your application. You may:
+- Set the `activeChild` properties to change which routes are active.
+- Change properties of the `queryParams` objects.
 - Change the `path` property of the `'catalog'` route (which has path capturing enabled)
+
+All changes will be reflected back to the URL. 
 
 ## Tips and Tricks
 
@@ -109,4 +131,4 @@ _onActiveChildRouteChange (routeName) {
 }
 ```
 
-Polymer expects that `_onActiveChildRouteChange()` doesn't change the value while it runs. Therefore the modification is done asynchronously using `setTimeout()`. More about Polymer's observers in the [documentation chapter about observers](https://www.polymer-project.org/2.0/docs/devguide/observers).
+Polymer expects that `_onActiveChildRouteChange()` doesn't change the value while it runs. Therefore the desired modification is done asynchronously using `setTimeout()`. More about Polymer's observers in the [documentation chapter about observers](https://www.polymer-project.org/2.0/docs/devguide/observers).
