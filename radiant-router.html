@@ -19,11 +19,13 @@
         ],
 
         _onURLChange: function (url) {
+          if (url === undefined) { return }
           this.rootRoute.url = url
           this._extractPropertiesFromRouter()
         },
 
         _onRouteStateChange: function (routeState) {
+          if (routeState === undefined) { return }
           this.rootRoute.state = routeState
           this._extractPropertiesFromRouter()
         },
