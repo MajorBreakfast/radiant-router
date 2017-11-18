@@ -1,8 +1,8 @@
 {
   "name": "radiant-router",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "license": "MIT",
-  "description": "Material design tabs",
+  "description": "A router for Polymer that syncs the URL to a JavaScript object",
   "main": "radiant-router.html",
   "authors": ["MajorBreakfast"],
   "keywords": [
