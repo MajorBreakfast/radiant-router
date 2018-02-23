@@ -176,11 +176,9 @@ static get observers () {
 }
 _onActiveChildRouteChange (routeName) {
   if (!routeName) { // null? => Redirect to home
-    setTimeout(() => {
-      this.set('routeState.activeChild', 'home')
-    }, 0)
+    Promise.resolve().then(() => { this.set('routeState.activeChild', 'home') })
   }
 }
 ```
 
-Polymer expects that `_onActiveChildRouteChange()` doesn't change the value while it runs. Therefore the desired modification is done asynchronously using `setTimeout()`. More about Polymer's observers in the [documentation chapter about observers](https://www.polymer-project.org/2.0/docs/devguide/observers).
+Polymer expects that `_onActiveChildRouteChange()` doesn't change the value while it runs. Therefore the desired modification is done asynchronously using a `Promise` (Promises have microtask timing, i.e. the browser will not rerender in the meantime). More about Polymer's observers in the [documentation chapter about observers](https://www.polymer-project.org/2.0/docs/devguide/observers).
