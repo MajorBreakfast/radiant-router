@@ -1,5 +1,22 @@
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/MajorBreakfast/radiant-router)
-[![npm version](https://badge.fury.io/js/radiant-router.svg)](https://badge.fury.io/js/radiant-router)
+
+
+<p align="center">
+  <img alt="radiant router" src="https://raw.githubusercontent.com/MajorBreakfast/radiant-router/master/doc/radiant-router.svg?sanitize=true" width="600">
+</p>
+
+<p align="center">
+  A router for Polymer that syncs the URL to a JavaScript object
+</p>
+
+<p align="center">
+  <a href="https://www.webcomponents.org/element/MajorBreakfast/radiant-router">
+    <img alt="Published on webcomponents.org" src="https://img.shields.io/badge/webcomponents.org-published-blue.svg">
+  </a>
+
+  <a href="https://www.npmjs.com/package/radiant-router">
+    <img alt="npm version" src="https://badge.fury.io/js/radiant-router.svg">
+  </a>
+</p>
 
 # Radiant Router
 The `<radiant-router>` is a custom element which synchronizes a URL to a JavaScript object and vice versa. It supports query parameters and path capturing.
