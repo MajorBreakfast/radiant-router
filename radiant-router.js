@@ -1,7 +1,7 @@
-import { Element } from '../@polymer/polymer/polymer-element.js'
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
 export { default as RadiantRoute } from './radiant-route.js'
 
-export class RadiantRouter extends Element {
+export class RadiantRouter extends PolymerElement {
   static get is () { return 'radiant-router' }
 
   static get properties () {
