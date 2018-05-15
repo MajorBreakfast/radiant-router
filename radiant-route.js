@@ -26,7 +26,7 @@ class StringQueryParam {
   constructor (options) {
     this._variableName = options.variableName
     this._queryParamName = options.queryParamName
-    this._value = ''
+    this._value = null
   }
 
   extractFromRouteState (routeState) {
@@ -38,11 +38,12 @@ class StringQueryParam {
   }
 
   extractFromURLObject (urlObject) {
-    this._value = urlObject.queryParams[this._queryParamName] || ''
+    this._value = urlObject.queryParams[this._queryParamName]
+    if (typeof this._value !== 'string') { this._value = null }
   }
 
   exportToURLObject (urlObject) {
-    if (this._value) {
+    if (typeof this._value === 'string') {
       urlObject.queryParams[this._queryParamName] = this._value
     }
   }
@@ -196,8 +197,10 @@ function urlObjectToURL (urlObject) {
   var query = ''
   Object.keys(urlObject.queryParams).forEach(function (key) {
     var value = urlObject.queryParams[key]
-    query += '&' + encodeURIComponent(key)
-    if (value) { query += '=' + encodeURIComponent(value) }
+    if (typeof value === 'string') {
+      query += '&' + encodeURIComponent(key)
+      if (value) { query += '=' + encodeURIComponent(value) }
+    }
   })
   query = query.slice(1)
 

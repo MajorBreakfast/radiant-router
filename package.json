@@ -1,7 +1,7 @@
 {
   "name": "radiant-router",
   "flat": true,
-  "version": "0.9.8",
+  "version": "0.10.0",
   "description": "A router for Polymer that syncs the URL to a JavaScript object",
   "contributors": [
     "MajorBreakfast"
