@@ -103,7 +103,7 @@ export default class RadiantRoute {
     } else {
       urlObject = { path: '', queryParams: {} }
 
-      if (this._capturePath && this._path.length > 0) {
+      if (this._capturePath && this._path && this._path.length > 0) {
         urlObject.path = '/' + this._path
       }
     }
@@ -130,7 +130,7 @@ export default class RadiantRoute {
     }.bind(this))
 
     if (this._activeChildRoute) { // Go deeper
-      if (this._capturePath) { this._path = null }
+      if (this._capturePath) { this._path = '' }
       urlObject.path = pathTail
       this._activeChildRoute._applyURLObject(urlObject)
     } else { // No active child route
